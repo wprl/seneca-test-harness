@@ -1,16 +1,16 @@
 {
-  "name": "example-service",
+  "name": "seneca-docker-image",
   "version": "0.1.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "docker build --tag=example-service:latest .",
-    "start": "docker run -p 3270:80 -t example-service",
+    "build": "docker build --tag=seneca:latest .",
+    "start": "node index",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.13.3"
+    "seneca": "^0.6.4"
   }
 }
