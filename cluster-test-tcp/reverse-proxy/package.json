@@ -1,0 +1,12 @@
+{
+  "name": "reverse-proxy",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+      "build": "docker build -t proxy:latest .",
+      "start": "docker run -t proxy:latest"
+  },
+  "author": "",
+  "license": "ISC"
+}
