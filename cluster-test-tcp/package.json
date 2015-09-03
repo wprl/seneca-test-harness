@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "docker-compose run reverse_proxy"
+    "start": "docker-compose run load_balancer"
   },
   "author": "",
   "license": "ISC"

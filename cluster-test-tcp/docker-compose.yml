@@ -1,5 +1,5 @@
-reverse_proxy:
-  build: ./reverse-proxy
+load_balancer:
+  build: ./load-balancer
   ports:
     - "80:80"
   links:
