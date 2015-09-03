@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "docker-compose run load_balancer"
+    "start": "docker-compose run --service-ports load_balancer"
   },
   "author": "",
   "license": "ISC"
