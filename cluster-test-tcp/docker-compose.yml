@@ -8,26 +8,19 @@ load_balancer:
 
 web_1:
   build: ./web
-  ports:
-    - "8000:80"
+  expose:
+    - "80"
   links:
     - worker_1
-    - worker_2
 
 web_2:
   build: ./web
-  ports:
-    - "8001:80"
+  expose:
+    - "80"
   links:
     - worker_1
-    - worker_2
 
 worker_1:
   build: ./worker
-  ports:
-    - "2300:23"
-
-worker_2:
-  build: ./worker
-  ports:
-    - "2301:23"
+  expose:
+    - "23"

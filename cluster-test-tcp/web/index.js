@@ -5,15 +5,35 @@ var express = require('express');
 
 var name = pkg.name
 
+var config = {
+  seneca: {
+    transport: {
+      type: 'tcp',
+      tcp: { port: process.env.WORKER_1_PORT_23_TCP_PORT || 23 }
+    }
+  }
+};
+
 module.exports = function (options) {
   var seneca = this;
 
+  seneca.options(config.seneca);
+
   seneca.use('seneca-web');
-  seneca.client({ type: 'tcp' });
+
+  seneca.client({
+    type: 'tcp',
+    port: process.env.WORKER_1_PORT_23_TCP_PORT,
+    host: process.env.WORKER_1_PORT_23_TCP_ADDR,
+    pin: 'role:test-worker,cmd:*'
+  });
+
+  console.log('TALKING TO %s', process.env.WORKER_1_PORT);
 
   // Create a web server.
   seneca.add({ role: 'test-web', cmd: 'proxy' }, function (args, done) {
-    return seneca.act({ role: 'test-worker', cmd: 'ping' }, done);
+    done(null, {msg:'pong'})
+    //this.act({ role: 'test-worker', cmd: 'ping' }, done);
   });
 
   seneca.act({ role: 'web' }, { use: {
