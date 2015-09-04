@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-      "build": "docker build -t load-balancer:latest .",
-      "start": "docker run -p 80:80 -t load-balancer:latest",
-      "interactive": "docker run -i -p 80:80 -t load-balancer:latest /bin/bash"
+    "build": "docker build -t load-balancer:latest .",
+    "start": "docker run -p 80:80 -t load-balancer:latest",
+    "interactive": "docker run -i -p 80:80 -t load-balancer:latest /bin/bash"
   },
   "author": "William Riley-Land",
   "license": ""
