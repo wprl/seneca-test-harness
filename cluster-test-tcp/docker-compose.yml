@@ -23,4 +23,4 @@ web_2:
 worker_1:
   build: ./worker
   expose:
-    - "23"
+    - "8000"
