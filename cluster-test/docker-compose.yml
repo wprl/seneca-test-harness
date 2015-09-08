@@ -1,0 +1,12 @@
+load_balancer:
+  build: ./load-balancer
+  ports:
+    - "80:80"
+
+web:
+  build: ./web
+  expose:
+    - "80"
+
+worker:
+  build: ./worker

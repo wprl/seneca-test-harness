@@ -5,7 +5,6 @@
   "main": "index.js",
   "scripts": {
     "build": "docker-compose build",
-    "clean": "docker-compose stop && docker-compose kill && docker-compose rm",
     "start": "docker-compose up"
   },
   "author": "",

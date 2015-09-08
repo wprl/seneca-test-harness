@@ -1,17 +1,7 @@
-FROM nginx:latest
+FROM jwilder/nginx-proxy:0.1.0
 EXPOSE 80
-COPY ./load-balancer.conf /etc/nginx/conf.d/default.conf
 
-# Install curl
-RUN apt-get update -qq
-RUN apt-get install -qy curl
-
-# Set EnvPlate version
-ENV ENVPLATE_VERSION 0.0.8
-
-# Install EnvPlate
-RUN curl -sLo /usr/local/bin/ep https://github.com/kreuzwerker/envplate/releases/download/v$ENVPLATE_VERSION/ep-linux
-RUN chmod +x /usr/local/bin/ep
-
-# Use ep to expand environment variables in the Nginx configuration.
-CMD /usr/local/bin/ep -v /etc/nginx/conf.d/*.conf -- /usr/sbin/nginx -g 'daemon off;'
+# The default template creates a server that always sends 503...
+# Removing that server is the only change to the template from
+# nginx-proxy:0.1.0
+COPY ./nginx.tmpl /app/nginx.tmpl
