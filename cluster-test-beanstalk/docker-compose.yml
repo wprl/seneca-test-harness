@@ -1,0 +1,23 @@
+load_balancer:
+  build: ./load-balancer
+  ports:
+    - "80:80"
+  links:
+    - web
+
+web:
+  build: ./web
+  expose:
+    - "80"
+  links:
+    - beanstalk
+
+worker:
+  build: ./worker
+  links:
+    - beanstalk
+
+beanstalk:
+  image: "schickling/beanstalkd:latest"
+  expose:
+    - "11300"
