@@ -4,13 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "docker build --tag=seneca:latest .",
+    "build": "docker build --tag=seneca:$SENECA_VERSION .",
+    "install-seneca": "npm install --save --save-exact seneca@$SENECA_VERSION",
     "start": "node index",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "",
-  "dependencies": {
-    "seneca": "^0.6.4"
-  }
+  "author": {
+    "name": "William Riley-Land",
+    "email": "william@kun.io"
+  },
+  "license": ""
 }
