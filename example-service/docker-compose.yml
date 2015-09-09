@@ -1,5 +1,5 @@
 example_service:
-  image: seneca:0.6.4
+  build: ./
   ports:
     - "80:80"
   volumes:

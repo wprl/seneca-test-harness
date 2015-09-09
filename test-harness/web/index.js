@@ -4,11 +4,25 @@ var pkg = require('./package');
 var express = require('express');
 
 var name = pkg.name
+var config = {
+  seneca: {
+    transport: {
+      type: 'beanstalk',
+      port: process.env.BEANSTALK_PORT_11300_TCP_PORT,
+      host: process.env.BEANSTALK_PORT_11300_TCP_ADDR
+    }
+  }
+};
 
 module.exports = function (options) {
   var seneca = this;
 
+  seneca.options(config.seneca);
+  seneca.use(require('seneca-beanstalk-transport'));
   seneca.use('seneca-web');
+  seneca.client({ type: 'beanstalk' });
+
+  console.log('TALKING TO %s', process.env.BEANSTALK_PORT);
 
   // Create a web server.
   seneca.add({ role: 'test-web', cmd: 'proxy' }, function (args, done) {

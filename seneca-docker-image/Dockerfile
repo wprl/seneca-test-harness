@@ -18,5 +18,4 @@ RUN npm install --production
 VOLUME $SENECA_SERVICE_PATH
 
 # Copy service plugin (user) files to the container.
-CMD cd $SENECA_SERVICE_PATH && npm install --production \
-  && cd $SENECA_HOST_PATH && npm start
+CMD ["npm", "start"]
