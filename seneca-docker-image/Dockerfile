@@ -2,24 +2,21 @@ FROM node:0.10
 
 MAINTAINER William Riley-Land
 
-ENV SENECA_HOST_DIR /usr/src/seneca-host
-ENV SENECA_SERVICE_DIR $SENECA_HOST_DIR/service
+ENV SENECA_HOST_PATH /usr/src/seneca-host
+ENV SENECA_SERVICE_PATH $SENECA_HOST_PATH/service
 
 # Create the host & service directories.
-RUN mkdir -p $SENECA_HOST_DIR
-RUN mkdir -p $SENECA_SERVICE_DIR
+RUN mkdir -p $SENECA_HOST_PATH
+RUN mkdir -p $SENECA_SERVICE_PATH
 
 # Copy host seneca instance files to the container.
-WORKDIR $SENECA_HOST_DIR
-COPY . $SENECA_HOST_DIR
+WORKDIR $SENECA_HOST_PATH
+COPY . $SENECA_HOST_PATH
 RUN npm run install-seneca
 RUN npm install --production
 
-# Copy service plugin (user) files to the container.
-ONBUILD WORKDIR $SENECA_SERVICE_DIR
-ONBUILD COPY . $SENECA_SERVICE_DIR
-ONBUILD RUN npm install --production
+VOLUME $SENECA_SERVICE_PATH
 
-# Run the host seneca instance.
-ONBUILD WORKDIR $SENECA_HOST_DIR
-ONBUILD CMD [ "npm", "start" ]
+# Copy service plugin (user) files to the container.
+CMD cd $SENECA_SERVICE_PATH && npm install --production \
+  && cd $SENECA_HOST_PATH && npm start

@@ -1,0 +1,6 @@
+example_service:
+  image: seneca:0.6.4
+  ports:
+    - "80:80"
+  volumes:
+    - .:/usr/src/seneca-host/service
