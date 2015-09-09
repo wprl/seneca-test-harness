@@ -1,2 +1,2 @@
-FROM seneca:latest
+FROM seneca:0.6.4
 EXPOSE 80

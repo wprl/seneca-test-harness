@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "docker build --tag=example-service:latest .",
-    "start": "docker run -p 3270:80 -t example-service",
+    "start": "docker run -p 80:80 -t example-service",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
