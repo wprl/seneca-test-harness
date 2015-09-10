@@ -1,2 +1,4 @@
 FROM seneca:0.6.4
+COPY . $SENECA_SERVICE_PATH
+WORKDIR $SENECA_SERVICE_PATH
 RUN npm install --production
