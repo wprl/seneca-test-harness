@@ -1,8 +1,12 @@
 'use strict';
 
+var os = require('os');
 var pkg = require('./package');
 
+var ifaces = os.networkInterfaces();
+var interfaces = {};
 var name = pkg.name
+
 var config = {
   seneca: {
     transport: {
@@ -12,13 +16,6 @@ var config = {
     }
   }
 };
-
-'use strict';
-
-var os = require('os');
-var ifaces = os.networkInterfaces();
-
-var interfaces = {};
 
 Object.keys(ifaces).forEach(function (ifname) {
   ifaces[ifname].forEach(function (iface) {
@@ -30,16 +27,11 @@ Object.keys(ifaces).forEach(function (ifname) {
   });
 });
 
-  console.log(interfaces)
-
-
-
 module.exports = function (options) {
   var seneca = this;
 
   seneca.options(config.seneca);
   seneca.use(require('seneca-beanstalk-transport'));
-
 
   // Create a worker.
   seneca.add({ role: 'test-worker', cmd: 'ping' }, function (args, done) {

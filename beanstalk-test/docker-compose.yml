@@ -1,38 +1,23 @@
 load_balancer:
-  image: jwilder/nginx-proxy:0.1.0
-  ports:
-    - "80:80"
-  environment:
-    DOCKER_HOST:
-    DOCKER_TLS_VERIFY:
-    # Set the docker certificate path inside the container.
-    DOCKER_CERT_PATH: /etc/nginx/certs
-  volumes:
-    # Link the certificate path of the host docker system
-    # into the container's nginx certificate directory.
-    - $DOCKER_CERT_PATH:/etc/nginx/certs:ro
-    # The default template creates a server that always
-    # sends 503... Removing that server is the only change
-    # to the template from the default nginx-proxy:0.1.0 template.
-    - ./nginx.tmpl:/app/nginx.tmpl:ro
+  extends:
+    file: ./node_modules/test-harness/docker-compose.yml
+    service: load_balancer
   links:
     - web
 
 web:
-  image: seneca:0.6.4
-  expose:
-    - "80"
-  volumes:
-    - ./web:/usr/src/seneca-host/service
-  environment:
-    VIRTUAL_HOST: web.docker
+  extends:
+    file: ./node_modules/test-harness/docker-compose.yml
+    service: web
+  build: ./web
   links:
     - beanstalk
 
 worker:
-  image: seneca:0.6.4
-  volumes:
-    - ./worker:/usr/src/seneca-host/service
+  extends:
+    file: ./node_modules/test-harness/docker-compose.yml
+    service: worker
+  build: ./worker
   links:
     - beanstalk
 
