@@ -6,7 +6,9 @@
   "scripts": {
     "build": "docker-compose build",
     "clean": "docker-compose stop && docker-compose kill && docker-compose rm",
-    "start": "docker-compose up"
+    "start": "docker-compose up -d",
+    "scale": "docker-compose scale web=4 worker=4",
+    "test": "npm start && npm run scale && siege -c 200 --time 2S -q http://$(echo $DOCKER_HOST | cut -d: -f2 | cut -d/ -f3)/ping"
   },
   "author": "",
   "license": "",
