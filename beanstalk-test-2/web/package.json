@@ -1,0 +1,12 @@
+{
+  "name": "web",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "author": "",
+  "license": "",
+  "dependencies": {
+    "express": "^4.13.3",
+    "seneca-beanstalk-transport": "^0.2.1"
+  }
+}

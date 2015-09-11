@@ -1,0 +1,11 @@
+{
+  "name": "worker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "author": "",
+  "license": "",
+  "dependencies": {
+    "seneca-beanstalk-transport": "^0.2.1"
+  }
+}
