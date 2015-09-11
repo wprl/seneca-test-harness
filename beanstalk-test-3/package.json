@@ -1,0 +1,17 @@
+{
+  "name": "beanstalk-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "docker-compose build",
+    "clean": "docker-compose stop && docker-compose kill && docker-compose rm",
+    "start": "docker-compose up",
+    "test": "docker-compose scale beanstalk=1 web=3 worker=1 "
+  },
+  "author": "",
+  "license": "",
+  "dependencies": {
+    "test-harness": "file:../test-harness"
+  }
+}

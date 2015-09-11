@@ -1,0 +1,20 @@
+test:
+  extends:
+    file: ./node_modules/test-harness/docker-compose.yml
+    service: worker
+  build: ./test
+  links:
+    - beanstalk
+
+worker:
+  extends:
+    file: ./node_modules/test-harness/docker-compose.yml
+    service: worker
+  build: ./worker
+  links:
+    - beanstalk
+
+beanstalk:
+  image: schickling/beanstalkd:latest
+  expose:
+    - "11300"
