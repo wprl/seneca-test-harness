@@ -1,11 +1,3 @@
-web:
-  extends:
-    file: ./node_modules/test-harness/docker-compose.yml
-    service: web
-  build: ./web
-  links:
-    - beanstalk
-
 worker:
   extends:
     file: ./node_modules/test-harness/docker-compose.yml

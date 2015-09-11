@@ -9,7 +9,7 @@ lab.experiment('1 worker', function () {
   //   exec('docker-compose up -d', done);
   // });
 
-  lab.test('happy simple', {timeout: 20000 }, function (done) {
+  lab.test('happy simple', { timeout: 20000 }, function (done) {
     var config = {
       default_plugins: { web: false },
       transport: {
@@ -36,10 +36,7 @@ lab.experiment('1 worker', function () {
   });
 
   // lab.after(function (done) {
-  //   exec('docker-compose stop', function () {
-  //     console.log('uo');
-  //     done();
-  //   });
+  //   exec('docker-compose stop', done);
   // });
 
 });
