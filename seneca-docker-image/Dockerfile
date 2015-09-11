@@ -16,4 +16,9 @@ RUN npm run install-seneca
 RUN npm install --production
 
 # Copy service plugin (user) files to the container.
+# TODO Docker best practice is to use the array form
+# of CMD.  However, we need to expand an environment
+# variable so that will not work directly.  Figure
+# out a clever and safe way you use $SENECA_HOST_PATH
+# in the CMD.
 CMD npm --prefix $SENECA_HOST_PATH start
