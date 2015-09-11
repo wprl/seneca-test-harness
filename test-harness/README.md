@@ -1,4 +1,4 @@
-Tested on OS X Yosemite with Docker Toolbox.
+Provides docker-compose definitions that can be reused by other tests.
 
 Useful commands:
 
@@ -8,9 +8,3 @@ npm start
 npm run clean
 ```
 
-How to scale:
-
-```bash
-npm start
-docker-compose scale web=4 worker=4
-```
